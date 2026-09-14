@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+client/node_modules/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Build / test output
+coverage/
+client/build/
+
+# Hardhat generated files
+cache/
+artifacts/
+typechain/
+typechain-types/
+
+# Generated local deployment metadata
+client/src/contracts/deployment.json
+
+# OS files
+.DS_Store

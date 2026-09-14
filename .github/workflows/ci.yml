@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install root dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Install client dependencies
+        run: npm install --no-audit --no-fund
+        working-directory: client
+
+      - name: Compile contracts and sync ABI
+        run: npm run compile
+
+      - name: Run Solidity tests
+        run: npm run test:contracts
+
+      - name: Run React tests
+        run: npm run test:client
+        env:
+          CI: true
+          REACT_APP_CONTRACT_ADDRESS: 0x0000000000000000000000000000000000000001
+          REACT_APP_CHAIN_ID: 1337
+          REACT_APP_API_BASE_URL: http://localhost:4000
+
+      - name: Build React application
+        run: npm --prefix client run build
+        env:
+          REACT_APP_CONTRACT_ADDRESS: 0x0000000000000000000000000000000000000001
+          REACT_APP_CHAIN_ID: 1337
+          REACT_APP_API_BASE_URL: http://localhost:4000

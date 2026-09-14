@@ -1,0 +1,20 @@
+{
+  "name": "decentrashare",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Decentralized file storage and sharing DApp using Ethereum, Solidity and IPFS.",
+  "scripts": {
+    "compile": "hardhat compile && node scripts/sync-abi.js",
+    "test:contracts": "hardhat test",
+    "test:client": "npm --prefix client test -- --watchAll=false --runInBand",
+    "test": "npm run compile && npm run test:contracts && npm run test:client",
+    "build": "npm run compile && npm --prefix client run build",
+    "node": "hardhat node",
+    "deploy:local": "npm run compile && hardhat run scripts/deploy.js --network localhost",
+    "server": "node server/index.js"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "2.0.2",
+    "hardhat": "2.28.3"
+  }
+}

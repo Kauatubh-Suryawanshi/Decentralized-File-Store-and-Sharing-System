@@ -1,0 +1,79 @@
+{
+  "contractName": "Upload",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        { "indexed": true, "internalType": "address", "name": "owner", "type": "address" },
+        { "indexed": false, "internalType": "string", "name": "url", "type": "string" }
+      ],
+      "name": "FileAdded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        { "indexed": true, "internalType": "address", "name": "owner", "type": "address" },
+        { "indexed": true, "internalType": "address", "name": "user", "type": "address" }
+      ],
+      "name": "AccessGranted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        { "indexed": true, "internalType": "address", "name": "owner", "type": "address" },
+        { "indexed": true, "internalType": "address", "name": "user", "type": "address" }
+      ],
+      "name": "AccessRevoked",
+      "type": "event"
+    },
+    {
+      "inputs": [{ "internalType": "string", "name": "url", "type": "string" }],
+      "name": "add",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [{ "internalType": "address", "name": "user", "type": "address" }],
+      "name": "allow",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [{ "internalType": "address", "name": "owner", "type": "address" }],
+      "name": "display",
+      "outputs": [
+        { "internalType": "string[]", "name": "", "type": "string[]" }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [{ "internalType": "address", "name": "user", "type": "address" }],
+      "name": "disallow",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "shareAccess",
+      "outputs": [
+        {
+          "components": [
+            { "internalType": "address", "name": "user", "type": "address" },
+            { "internalType": "bool", "name": "access", "type": "bool" }
+          ],
+          "internalType": "struct Upload.Access[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ]
+}
